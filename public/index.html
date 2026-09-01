@@ -11,7 +11,7 @@
 </head>
 <body>
 
-  <!-- Navigation Lateral -->
+  <!-- Navigation -->
   <aside class="sidebar">
     <div class="logo">MUSIC</div>
     <div class="nav-group">
@@ -27,6 +27,25 @@
       <input type="text" id="search-input" class="search-input" placeholder="🔍 Search songs, artists or albums..." autocomplete="off">
     </div>
 
+    <!-- Section Titre Sélectionné (Style VidMate) -->
+    <section id="selected-track-section" class="selected-card hidden">
+      <div class="selected-content">
+        <img id="selected-cover" src="" alt="Cover" class="selected-cover-img">
+        <div class="selected-info">
+          <h2 id="selected-title">Titre du morceau</h2>
+          <p id="selected-artist" style="color: var(--text-muted)">Nom de l'artiste</p>
+          <p id="selected-album" style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 8px;">Album</p>
+          
+          <div class="selected-actions">
+            <button id="btn-selected-play" class="btn btn-play">▶️ Écouter</button>
+            <button id="btn-selected-download" class="btn btn-download">⬇️ Télécharger</button>
+            <button id="btn-selected-lyrics" class="btn btn-secondary">🎤 Paroles</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grille de recherche -->
     <section id="results-section">
       <h2 style="margin-bottom: 16px;">🔥 Trending Now</h2>
       <div id="tracks-grid" class="tracks-grid">
@@ -62,10 +81,9 @@
     </div>
   </div>
 
-  <!-- Conteneur Toast Notifications -->
   <div id="toast-container"></div>
 
   <script src="/js/player.js"></script>
   <script src="/js/app.js"></script>
 </body>
-      </html>
+</html>
