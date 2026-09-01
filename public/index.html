@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MUSIC — Your sound. Your world.</title>
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Lateral -->
+  <aside class="sidebar">
+    <div class="logo">MUSIC</div>
+    <div class="nav-group">
+      <h4>DISCOVER</h4>
+      <a href="#" class="nav-link active">⌂ Home</a>
+      <a href="/developers" class="nav-link">🔌 API Docs</a>
+    </div>
+  </aside>
+
+  <!-- Contenu Principal -->
+  <main class="main-content">
+    <div class="search-container">
+      <input type="text" id="search-input" class="search-input" placeholder="🔍 Search songs, artists or albums..." autocomplete="off">
+    </div>
+
+    <section id="results-section">
+      <h2 style="margin-bottom: 16px;">🔥 Trending Now</h2>
+      <div id="tracks-grid" class="tracks-grid">
+        <!-- Rempli dynamiquement par JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Player Persistant -->
+  <div id="persistent-player" class="hidden">
+    <div class="player-info">
+      <img id="player-cover" class="player-cover" src="" alt="Cover">
+      <div>
+        <div id="player-title" class="track-title">Titre</div>
+        <div id="player-artist" class="track-artist">Artiste</div>
+      </div>
+    </div>
+
+    <div class="player-controls">
+      <div class="control-buttons">
+        <button id="btn-play-toggle" class="btn-control">▶</button>
+      </div>
+      <input type="range" id="player-progress" class="progress-bar" value="0" min="0" max="100">
+    </div>
+  </div>
+
+  <!-- Modal Lyrics -->
+  <div id="lyrics-modal" class="modal">
+    <div class="modal-content">
+      <h3 id="lyrics-title" style="margin-bottom: 8px;">Paroles</h3>
+      <p id="lyrics-body" style="white-space: pre-line; color: var(--text-muted); font-size: 0.95rem;"></p>
+      <button onclick="closeLyrics()" class="btn btn-secondary" style="margin-top: 20px; width: 100%;">Fermer</button>
+    </div>
+  </div>
+
+  <!-- Conteneur Toast Notifications -->
+  <div id="toast-container"></div>
+
+  <script src="/js/player.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+      </html>
