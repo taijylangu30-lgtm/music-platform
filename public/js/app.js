@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('search-input');
   
-  // Recherche par défaut au chargement
+  // Recherche initiale
   performSearch("The Weeknd");
 
   let debounceTimer;
@@ -47,15 +47,28 @@ function renderTracks(tracks) {
       </div>
       <div class="track-title">${track.title}</div>
       <div class="track-artist">${track.artist}</div>
-      <div class="card-actions">
-        <button class="btn btn-play" onclick='window.player.playTrack(${JSON.stringify(track)})'>▶ Écouter</button>
-        <button class="btn btn-secondary" onclick="fetchLyrics('${encodeURIComponent(track.title)}', '${encodeURIComponent(track.artist)}')">🎤</button>
-        <button class="btn btn-secondary" onclick="window.player.downloadTrack('${track.id}')">⬇</button>
-      </div>
     `;
 
+    // Clic sur la carte pour l'ouvrir dans la zone "VidMate"
+    card.addEventListener('click', () => selectTrack(track));
     grid.appendChild(card);
   });
+}
+
+function selectTrack(track) {
+  document.getElementById('selected-cover').src = track.cover;
+  document.getElementById('selected-title').innerText = track.title;
+  document.getElementById('selected-artist').innerText = track.artist;
+  document.getElementById('selected-album').innerText = track.album || '';
+
+  // Configuration des actions
+  document.getElementById('btn-selected-play').onclick = () => window.player.playTrack(track);
+  document.getElementById('btn-selected-download').onclick = () => window.player.downloadTrack(track.id);
+  document.getElementById('btn-selected-lyrics').onclick = () => fetchLyrics(encodeURIComponent(track.title), encodeURIComponent(track.artist));
+
+  const section = document.getElementById('selected-track-section');
+  section.classList.remove('hidden');
+  section.scrollIntoView({ behavior: 'smooth' });
 }
 
 async function fetchLyrics(title, artist) {
@@ -64,7 +77,7 @@ async function fetchLyrics(title, artist) {
     const payload = await res.json();
 
     if (!payload.success || !payload.data.lyrics) {
-      showToast("🎤 Paroles indisponibles", "warning");
+      showToast("🎤 Paroles indisponibles pour ce titre", "warning");
       return;
     }
 
@@ -78,4 +91,4 @@ async function fetchLyrics(title, artist) {
 
 function closeLyrics() {
   document.getElementById('lyrics-modal').classList.remove('active');
-}
+                                 }
