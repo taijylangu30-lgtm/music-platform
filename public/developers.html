@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>MUSIC API — Documentation Développeurs</title>
+  <link rel="stylesheet" href="/css/theme.css">
+  <style>
+    .api-endpoint {
+      background: var(--bg-card);
+      padding: 20px;
+      border-radius: var(--radius-card);
+      margin-bottom: 24px;
+      border: 1px solid var(--border-subtle);
+    }
+    .method {
+      background: var(--accent-primary);
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+    pre {
+      background: #000;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      color: #a7f3d0;
+      margin-top: 12px;
+    }
+    .copy-btn {
+      float: right;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .copy-btn:hover { background: var(--accent-primary); }
+  </style>
+</head>
+<body style="display: block; padding: 40px 20px;">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <a href="/" style="color: var(--text-muted); text-decoration: none;">← Retour à la plateforme</a>
+    <h1 style="margin-top: 16px;">🔌 MUSIC API Documentation</h1>
+    <p style="color: var(--text-muted); margin-top: 8px;">
+      Intégrez notre API musicale directement dans vos applications, sites web ou Messenger Goat Bots.
+    </p>
+
+    <hr style="border: 0; border-top: 1px solid var(--border-subtle); margin: 32px 0;">
+
+    <div class="api-endpoint">
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('GET /api/search?q=The+Weeknd')">Copier URL</button>
+      <span class="method">GET</span> <code>/api/search?q={query}</code>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px;">Recherche de morceaux, artistes et pochettes via iTunes API.</p>
+      <pre>{
+  "success": true,
+  "data": [
+    {
+      "id": "1440872996",
+      "title": "Blinding Lights",
+      "artist": "The Weeknd",
+      "album": "After Hours",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/.../600x600bb.jpg",
+      "duration": 200040
+    }
+  ],
+  "meta": { "total": 1 }
+}</pre>
+    </div>
+
+    <div class="api-endpoint">
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('GET /api/play?id=1440872996')">Copier URL</button>
+      <span class="method">GET</span> <code>/api/play?id={trackId}</code>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px;">Obtention du flux de lecture audio dynamique (Playback Service).</p>
+      <pre>{
+  "success": true,
+  "data": {
+    "streamUrl": "https://...",
+    "title": "Blinding Lights",
+    "duration": 200040
+  }
+}</pre>
+    </div>
+
+    <div class="api-endpoint">
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('GET /api/download?id=1440872996')">Copier URL</button>
+      <span class="method">GET</span> <code>/api/download?id={trackId}</code>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px;">Téléchargement légal et sécurisé via Christus Provider.</p>
+      <pre>{
+  "success": false,
+  "error": {
+    "code": "DOWNLOAD_RESTRICTED",
+    "message": "🔒 Download unavailable"
+  }
+}</pre>
+    </div>
+  </div>
+</body>
+  </html>
