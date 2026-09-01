@@ -3,55 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MUSIC — Your sound. Your world.</title>
+  <title>MUSIC — Premier Sound Experience</title>
   <link rel="stylesheet" href="/css/theme.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Navigation -->
+  <!-- Sidebar / Navigation -->
   <aside class="sidebar">
     <div class="logo">MUSIC</div>
     <div class="nav-group">
-      <h4>DISCOVER</h4>
-      <a href="#" class="nav-link active">⌂ Home</a>
+      <h4>NAVIGATION</h4>
+      <a href="#" id="nav-home" class="nav-link active">⌂ Accueil</a>
       <a href="/developers" class="nav-link">🔌 API Docs</a>
     </div>
   </aside>
 
   <!-- Contenu Principal -->
   <main class="main-content">
+
+    <!-- Barre de Recherche Globale -->
     <div class="search-container">
-      <input type="text" id="search-input" class="search-input" placeholder="🔍 Search songs, artists or albums..." autocomplete="off">
+      <input type="text" id="search-input" class="search-input" placeholder="🔍 Rechercher un titre, artiste..." autocomplete="off">
     </div>
 
-    <!-- Section Titre Sélectionné (Style VidMate) -->
-    <section id="selected-track-section" class="selected-card hidden">
-      <div class="selected-content">
-        <img id="selected-cover" src="" alt="Cover" class="selected-cover-img">
-        <div class="selected-info">
-          <h2 id="selected-title">Titre du morceau</h2>
-          <p id="selected-artist" style="color: var(--text-muted)">Nom de l'artiste</p>
-          <p id="selected-album" style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 8px;">Album</p>
-          
-          <div class="selected-actions">
-            <button id="btn-selected-play" class="btn btn-play">▶️ Écouter</button>
-            <button id="btn-selected-download" class="btn btn-download">⬇️ Télécharger</button>
-            <button id="btn-selected-lyrics" class="btn btn-secondary">🎤 Paroles</button>
+    <!-- 🏠 VUE 1 : PAGE D'ACCUEIL -->
+    <section id="view-home" class="page-view">
+      <div class="hero-banner">
+        <h1>Découvrez les meilleures tendances</h1>
+        <p>Écoutez et téléchargez vos morceaux préférés en haute qualité.</p>
+      </div>
+      <h2 class="section-title">🔥 Tendances du moment</h2>
+      <div id="home-grid" class="tracks-grid"></div>
+    </section>
+
+    <!-- 🔎 VUE 2 : PAGE RÉSULTATS DE RECHERCHE -->
+    <section id="view-search" class="page-view hidden">
+      <div class="search-header">
+        <button id="btn-back-home" class="btn btn-secondary">← Retour à l'accueil</button>
+        <h2 id="search-query-title">Résultats pour "..."</h2>
+      </div>
+      <div id="search-grid" class="tracks-grid"></div>
+    </section>
+
+    <!-- 🎵 VUE 3 : PAGE DÉDIÉE / TITRE PRO -->
+    <section id="view-track-details" class="page-view hidden">
+      <button id="btn-back-results" class="btn btn-secondary" style="margin-bottom: 24px;">← Retour aux résultats</button>
+
+      <div class="pro-track-container">
+        <div class="pro-cover-wrapper">
+          <img id="detail-cover" src="" alt="Cover" class="pro-cover">
+        </div>
+        
+        <div class="pro-track-info">
+          <span class="badge-pro">PREMIUM TRACK</span>
+          <h1 id="detail-title">Titre du morceau</h1>
+          <p id="detail-artist" class="artist-name">Artiste</p>
+          <p id="detail-album" class="album-name">Album</p>
+
+          <div class="pro-actions">
+            <button id="btn-detail-play" class="btn btn-play btn-large">▶ Écouter maintenant</button>
+            <button id="btn-detail-download" class="btn btn-download btn-large">⬇ Télécharger MP3</button>
+            <button id="btn-detail-lyrics" class="btn btn-secondary btn-large">🎤 Paroles</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Grille de recherche -->
-    <section id="results-section">
-      <h2 style="margin-bottom: 16px;">🔥 Trending Now</h2>
-      <div id="tracks-grid" class="tracks-grid">
-        <!-- Rempli dynamiquement par JS -->
-      </div>
-    </section>
   </main>
 
   <!-- Player Persistant -->
@@ -75,8 +95,8 @@
   <!-- Modal Lyrics -->
   <div id="lyrics-modal" class="modal">
     <div class="modal-content">
-      <h3 id="lyrics-title" style="margin-bottom: 8px;">Paroles</h3>
-      <p id="lyrics-body" style="white-space: pre-line; color: var(--text-muted); font-size: 0.95rem;"></p>
+      <h3 id="lyrics-title">Paroles</h3>
+      <p id="lyrics-body"></p>
       <button onclick="closeLyrics()" class="btn btn-secondary" style="margin-top: 20px; width: 100%;">Fermer</button>
     </div>
   </div>
